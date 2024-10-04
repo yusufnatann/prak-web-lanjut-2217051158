@@ -9,12 +9,15 @@ class Kelas extends Model
 {
     use HasFactory;
 
-   
+    // Nama tabel yang digunakan
     protected $table = 'kelas';
 
+    // Menggunakan guarded untuk mencegah mass assignment pada kolom 'id'
     protected $guarded = ['id'];
 
-    public function users() {
+    // Relasi one-to-many dengan model User
+    public function users()
+    {
         return $this->hasMany(User::class, 'kelas_id');
     }
 }

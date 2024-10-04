@@ -19,6 +19,26 @@ Route::get('/', function () {
 
 use App\Http\Controllers\UserController;
 
-Route::get('/user/profile/{nama}/{kelas}/{npm}', [UserController::class, 'profile'])->name('profile');
-Route::get('/user/create', [UserController::class, 'create'])->name('create');
-Route::post('/user/store', [UserController::class, 'store'])->name('user.store');
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/user/profile',
+[UserController::class, 'profile']);
+
+
+Route::get('/user/create',
+[UserController::class, 'create'])->name('user.create');;
+
+Route::post('/user/store',
+ [UserController::class,'store'])->name('user.store');
+ 
+ Route::get('/profile/{nama}/{kelas}/{npm}', [ProfileController::class, 'profile'])->name('user.profile');
+
+ Route::get('/user/profile', [UserController::class, 'profile'])->name('user.profile');
+
+ Route::get('/user', [UserController::class, 'index'])->name('user.index');
+
+ Route::delete('/user/{id}', [UserController::class, 'destroy'])->name('user.destroy');
+ Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
+ Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');
